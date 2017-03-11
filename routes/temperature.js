@@ -10,9 +10,9 @@ exports.register = function(server, options, next) {
 
     server.route({
         method: 'GET',
-        path: '/temp',
+        path: '/temp/list',
         handler: function (request, reply) {
-            db.temperature.find((err, docs) => {
+            db.Temperatures.find((err, docs) => {
                 if (err) {
                     return reply(Boom.wrap(err, 'Internal MongoDB error'));
                 }
@@ -23,9 +23,32 @@ exports.register = function(server, options, next) {
         }
     });
 
+    server.route({
+        method: 'POST',
+        path: '/temp/create',
+        handler: function (request, reply) {
+
+            const tempe = request.payload;
+
+            //Create an id
+            //tempe._id = uuid.v1();
+
+            db.Temperatures.save(tempe, (err, result) => {
+
+                if (err) {
+                    return reply(Boom.wrap(err, 'Internal MongoDB error'));
+                }
+
+                reply(result);
+            });
+        }
+    });
+
     return next();
+
 };
 
 exports.register.attributes = {
     name: 'routes-books'
 };
+
