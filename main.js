@@ -20,7 +20,8 @@ server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdq
 //Load plugins and start server
 server.register([
     require('./routes/temperature'),
-    require('./routes/uploadFiles')
+    require('./routes/uploadFiles'),
+    require('inert')
 ], (err) => {
 
     if (err) {
@@ -29,9 +30,12 @@ server.register([
 
     server.route({
         method: 'GET',
-        path: '/lineBot',
-        handler: function (request, reply) {
-            reply.file('/bot.php');
+        path: '/linebot',
+        handler: {
+            file: {
+                path: 'bot.php',
+                mode: 'attachment'
+            }
         }
     });
 
