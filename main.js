@@ -6,11 +6,13 @@ const mongojs = require('mongojs');
 var port = process.env.PORT || 3000;
 
 // Create a server with a host and port
+// For Dev on localhost
 // const server = new Hapi.Server();
 // server.connection({
 //     port: port
 // });
 
+// For Server Deploy
 var server = new Hapi.Server(process.env.PORT || 3000);
 
 //Connect to db
