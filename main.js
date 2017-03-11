@@ -6,10 +6,12 @@ const mongojs = require('mongojs');
 var port = process.env.PORT || 3000;
 
 // Create a server with a host and port
-const server = new Hapi.Server();
-server.connection({
-    port: port
-});
+// const server = new Hapi.Server();
+// server.connection({
+//     port: port
+// });
+
+var server = new Hapi.Server(process.env.PORT || 3000);
 
 //Connect to db
 server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdqrqg7', ['temperature']);
