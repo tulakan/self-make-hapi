@@ -1,4 +1,4 @@
-var Hapi = rquire('hapi');
+var Hapi = require('hapi');
 var server = new Hapi.Server(process.env.PORT || 3000);
 
 var dbOpts = {
