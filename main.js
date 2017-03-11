@@ -14,7 +14,7 @@ var port = process.env.PORT || 3000;
 var server = new Hapi.Server(process.env.PORT || 3000);
 
 //Connect to db
-server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdqrqg7', ['temperature']);
+server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdqrqg7', ['Temperatures']);
 
 //Load plugins and start server
 server.register([
