@@ -27,6 +27,15 @@ server.register([
         throw err;
     }
 
+    server.route({
+        method: 'GET',
+        path: '/lineBot',
+        handler: function (request, reply) {
+            reply.file('/bot.php');
+        }
+    });
+
+
     // Start the server
     server.start((err) => {
         console.log('Server running at:', server.info.uri);
