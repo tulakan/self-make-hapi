@@ -35,6 +35,7 @@ server.register([
         }
     });
 
+
     // Start the server
     server.start((err) => {
         console.log('Server running at:', server.info.uri);
