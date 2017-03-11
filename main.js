@@ -15,20 +15,19 @@ server.register({
     }
 });
 
-server.route( {
-    method: 'GET',
-    path: '/temp/',
-    handler(request, reply) {
-        const db = request.mongo.db;
-
-        db.collection('temperature').find({} , function (err, result) {
-            if (err) {
-                return reply(Boom.internal('Internal MongoDB error', err));
-            }
-            reply(result);
-        });
-    }
-});
+// server.route( {
+//     method: 'GET',
+//     path: '/temp/',
+//     handler(request, reply) {
+//         const db = request.mongo.db;
+//         db.collection('temperature').find({} , function (err, result) {
+//             if (err) {
+//                 return reply(Boom.internal('Internal MongoDB error', err));
+//             }
+//             reply(result);
+//         });
+//     }
+// });
 
 server.start(function () {
     console.log('Server started at [' + server.info.uri + ']');
