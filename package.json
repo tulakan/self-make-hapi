@@ -1,0 +1,14 @@
+{
+  "name": "self-make-hapi",
+  "version": "1.0.0",
+  "description": "hapi running on heroku",
+  "main": "main.js",
+  "author": "TuLa Kan",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "hapi": "^6.2.0"
+  },
+  "engines": {
+    "node": ">=0.10.x"
+  }
+}
