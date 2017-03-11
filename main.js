@@ -1,34 +1,30 @@
-var Hapi = require('hapi');
-var server = new Hapi.Server(process.env.PORT || 3000);
+'use strict';
 
-var dbOpts = {
-    url: 'mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdqrqg7'
-}
+const Hapi = require('hapi');
+const mongojs = require('mongojs');
 
-server.register({
-    register: require('hapi-mongodb'),
-    options: dbOpts
-}, function(err) {
-    if(err) {
-        console.error(err);
-        throw err;
-    }
+// Create a server with a host and port
+const server = new Hapi.Server();
+server.connection({
+    host: 'localhost',
+    port: process.env.PORT || 3000
 });
 
-// server.route( {
-//     method: 'GET',
-//     path: '/temp/',
-//     handler(request, reply) {
-//         const db = request.mongo.db;
-//         db.collection('temperature').find({} , function (err, result) {
-//             if (err) {
-//                 return reply(Boom.internal('Internal MongoDB error', err));
-//             }
-//             reply(result);
-//         });
-//     }
-// });
+//Connect to db
+server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdqrqg7', ['temperature']);
 
-server.start(function () {
-    console.log('Server started at [' + server.info.uri + ']');
+//Load plugins and start server
+server.register([
+    require('./routes/temperature')
+], (err) => {
+
+    if (err) {
+        throw err;
+    }
+
+    // Start the server
+    server.start((err) => {
+        console.log('Server running at:', server.info.uri);
+    });
+
 });

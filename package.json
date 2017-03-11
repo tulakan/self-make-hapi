@@ -6,8 +6,11 @@
   "author": "TuLa Kan",
   "readmeFilename": "README.md",
   "dependencies": {
-    "hapi": "^6.2.0",
-    "hapi-mongodb": "^6.2.1"
+    "boom": "^4.2.0",
+    "hapi": "^16.1.0",
+    "joi": "^10.2.2",
+    "mongojs": "^2.4.0",
+    "node-uuid": "^1.4.7"
   },
   "engines": {
     "node": ">=0.10.x"
