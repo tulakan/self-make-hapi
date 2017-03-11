@@ -1,6 +1,7 @@
 .idea
 *.iml
 npm-debug.log
+assets
 .DS_Store
 */.DS_Store
 */*/.DS_Store

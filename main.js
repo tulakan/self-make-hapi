@@ -3,10 +3,9 @@
 const Hapi = require('hapi');
 const mongojs = require('mongojs');
 
-var port = process.env.PORT || 3000;
-
 // Create a server with a host and port
 // For Dev on localhost
+var port = process.env.PORT || 3000;
 const server = new Hapi.Server();
 server.connection({
     port: port
@@ -20,7 +19,8 @@ server.app.db = mongojs('mongodb://hapi:hapi@ds121980.mlab.com:21980/heroku_6kdq
 
 //Load plugins and start server
 server.register([
-    require('./routes/temperature')
+    require('./routes/temperature'),
+    require('./routes/uploadFiles')
 ], (err) => {
 
     if (err) {
