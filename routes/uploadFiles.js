@@ -28,6 +28,8 @@ exports.register = function(server, options, next) {
                     console.log(fields);
                     console.log(files);
                 });
+
+                reply(result);
     
             }
         }
