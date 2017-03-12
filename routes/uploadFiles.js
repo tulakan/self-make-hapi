@@ -5,25 +5,6 @@ const uuid = require('node-uuid');
 const Joi = require('joi');
 const mongojs = require('mongojs');
 
-var uploadFilesService = {
-    fs : require('fs'),
-    multiparty: require('multiparty'),
-    uploadFiles:function(req,reply){
-        var form = new uploadFilesService.multiparty.Form();
-        var dt = new Date();
-        form.parse(req.payload, function(err, fields, files) {
-            uploadFilesService.fs.readFile(files.upload[0].path,function(err,data){
-                var newpath = __dirname + "/assets/" + dt.getTime() + "_" + files.upload[0].originalFilename;
-                uploadFilesService.fs.writeFile(newpath,data,function(err){
-                    if(err) console.log(err);
-                    else console.log(files)
-                })
-            });
-            console.log(files)
-        });
-    }
-}
-
 exports.register = function(server, options, next) {
 
     const db = server.app.db;
@@ -37,7 +18,15 @@ exports.register = function(server, options, next) {
                 output: 'stream',
                 parse: false
             },
-            handler: uploadFilesService.uploadFiles
+            handler: function(request, reply) {
+                var multiparty = require('multiparty');
+                var form = new multiparty.Form();
+                form.parse(request.payload, function(err, fields, files) {
+                    console.log(err);
+                    console.log(fields);
+                    console.log(files);
+                });
+            }
         }
     });
 
