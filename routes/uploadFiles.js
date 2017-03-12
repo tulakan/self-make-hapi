@@ -28,12 +28,6 @@ exports.register = function(server, options, next) {
                     console.log(fields);
                     console.log(files);
                 });
-
-                reply({
-                    "statusCode": 200,
-                    "message": "Successfully Updated.",
-                    "data": files
-                });
     
             }
         }
