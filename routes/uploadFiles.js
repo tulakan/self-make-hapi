@@ -20,7 +20,7 @@ exports.register = function(server, options, next) {
             },
     
     
-            handler: function(request, reply) {
+            handler: function(request, result) {
                 var multiparty = require('multiparty');
                 var form = new multiparty.Form();
                 form.parse(request.payload, function(err, fields, files) {
