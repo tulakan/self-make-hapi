@@ -18,6 +18,8 @@ exports.register = function(server, options, next) {
                 output: 'stream',
                 parse: false
             },
+    
+    
             handler: function(request, reply) {
                 var multiparty = require('multiparty');
                 var form = new multiparty.Form();
@@ -26,10 +28,20 @@ exports.register = function(server, options, next) {
                     console.log(fields);
                     console.log(files);
                 });
+    
+                db.Picture.save(request.payload.image1.path,(err, result) =>  {
+    
+                    if (err) {
+                        return reply(Boom.wrap(err, 'Internal MongoDB error'));
+                    }
+                  reply(result)
+    
+                });
             }
         }
     });
-
+    
+    
     return next();
 };
 

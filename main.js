@@ -39,6 +39,16 @@ server.register([
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            file: {
+                path: 'index.html'
+            }
+        }
+    });
+
 
     // Start the server
     server.start((err) => {
