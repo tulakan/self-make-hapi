@@ -20,7 +20,7 @@ exports.register = function(server, options, next) {
             },
     
     
-            handler: function(request, result) {
+            handler: function(request, reply) {
                 var multiparty = require('multiparty');
                 var form = new multiparty.Form();
                 form.parse(request.payload, function(err, fields, files) {
@@ -29,7 +29,11 @@ exports.register = function(server, options, next) {
                     console.log(files);
                 });
 
-                reply(result);
+                reply({
+                    "statusCode": 200,
+                    "message": "Successfully Updated.",
+                    "data": files
+                });
     
             }
         }
