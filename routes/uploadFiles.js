@@ -29,17 +29,10 @@ exports.register = function(server, options, next) {
                     console.log(files);
                 });
     
-                db.Picture.save(request.payload.image1.path,(err, result) =>  {
-    
-                    if (err) {
-                        return reply(Boom.wrap(err, 'Internal MongoDB error'));
-                    }
-                  reply(result)
-    
-                });
             }
         }
     });
+
     
     
     return next();

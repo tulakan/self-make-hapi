@@ -38,10 +38,10 @@ server.register([
             }
         }
     });
-
+    
     server.route({
         method: 'GET',
-        path: '/{param*}',
+        path: '/index',
         handler: {
             file: {
                 path: 'index.html'
