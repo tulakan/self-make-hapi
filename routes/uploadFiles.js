@@ -45,6 +45,11 @@ exports.register = function(server, options, next) {
             },
             handler:function (request, reply) {
                 console.log('fileUpload path : ' + request.payload.fileUpload.path);
+                reply({
+                    "statusCode": 200,
+                    "message": "Successfully Updated.",
+                    "data": request.payload.fileUpload.path
+                });
             }
         },
     });
